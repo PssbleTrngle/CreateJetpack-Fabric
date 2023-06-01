@@ -1,0 +1,13 @@
+{
+  "item.create_jetpack.jetpack": "喷气背包",
+  "item.create_jetpack.jetpack.tooltip": "",
+  "item.create_jetpack.jetpack.tooltip.summary": "允许使用压缩空气进行飞行",
+  "item.create_jetpack.jetpack.tooltip.control1": "按住 [空格键]",
+  "item.create_jetpack.jetpack.tooltip.action1": "向上飞",
+  "item.create_jetpack.jetpack.tooltip.control2": "按住 [SHIFT]",
+  "item.create_jetpack.jetpack.tooltip.action2": "向下飞",
+  "item.create_jetpack.jetpack.tooltip.control3": "按下 [G]",
+  "item.create_jetpack.jetpack.tooltip.action3": "开启/关闭引擎",
+  "item.create_jetpack.jetpack.tooltip.control4": "按下 [H]",
+  "item.create_jetpack.jetpack.tooltip.action4": "开启/关闭悬浮模式"
+}

@@ -1,0 +1,13 @@
+{
+  "item.create_jetpack.jetpack": "제트팩",
+  "item.create_jetpack.jetpack.tooltip": "",
+  "item.create_jetpack.jetpack.tooltip.summary": "가압된 공기를 사용하여 비행 기능을 제공합니다",
+  "item.create_jetpack.jetpack.tooltip.control1": "[점프]를 눌러서",
+  "item.create_jetpack.jetpack.tooltip.action1": "상승",
+  "item.create_jetpack.jetpack.tooltip.control2": "[SHIFT]를 눌러서",
+  "item.create_jetpack.jetpack.tooltip.action2": "하강",
+  "item.create_jetpack.jetpack.tooltip.control3": "[G]로",
+  "item.create_jetpack.jetpack.tooltip.action3": "엔진 켜기/끄기",
+  "item.create_jetpack.jetpack.tooltip.control4": "[H]로",
+  "item.create_jetpack.jetpack.tooltip.action4": "호버 모드 켜기/끄기"
+}

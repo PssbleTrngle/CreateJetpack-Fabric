@@ -1,0 +1,13 @@
+{
+  "item.create_jetpack.jetpack": "Jetpack",
+  "item.create_jetpack.jetpack.tooltip": "",
+  "item.create_jetpack.jetpack.tooltip.summary": "Permite la levitación utilizando aire a presión.",
+  "item.create_jetpack.jetpack.tooltip.control1": "Presiona [ESPACIO]",
+  "item.create_jetpack.jetpack.tooltip.action1": "Volar hacia arriba",
+  "item.create_jetpack.jetpack.tooltip.control2": "Presiona [SHIFT]",
+  "item.create_jetpack.jetpack.tooltip.action2": "Volar hacia abajo",
+  "item.create_jetpack.jetpack.tooltip.control3": "Presiona [G]",
+  "item.create_jetpack.jetpack.tooltip.action3": "Encender/apagar el motor",
+  "item.create_jetpack.jetpack.tooltip.control4": "Presiona [H]",
+  "item.create_jetpack.jetpack.tooltip.action4": "Activar/desactivar el modo flotante"
+}
