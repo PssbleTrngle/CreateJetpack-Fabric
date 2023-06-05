@@ -20,6 +20,7 @@ val curios_version: String by extra
 val caelus_version: String by extra
 //val elytra_slot_version: String by extra
 val jei_version: String by extra
+val emi_version: String by extra
 
 val localEnv = file(".env").takeIf { it.exists() }?.readLines()?.associate {
     val (key, value) = it.split("=")
@@ -80,6 +81,10 @@ loom {
 sourceSets["main"].resources.srcDir("src/generated/resources/")
 
 repositories {
+    maven {
+        url = uri("file://${env["LOCAL_MAVEN"]}")
+    }
+
     maven {
         url = uri("https://repo.spongepowered.org/repository/maven-public/")
     }
@@ -154,6 +159,12 @@ repositories {
         }
     }
     maven {
+        url = uri("https://maven.terraformersmc.com/")
+        content {
+            includeGroup("dev.emi")
+        }
+    }
+    maven {
         url = uri("https://maven.pkg.github.com/PssbleTrngle/FlightLib")
         credentials {
             username = env["GITHUB_ACTOR"]
@@ -173,6 +184,7 @@ dependencies {
 
     if (!isCI) {
         modRuntimeOnly("mezz.jei:jei-${mc_version}-fabric:${jei_version}")
+        modRuntimeOnly("dev.emi:emi-fabric:${emi_version}")
     }
 
     modCompileOnly("com.possible_triangle:flightlib-api:${flightlib_version}")
@@ -248,7 +260,7 @@ env["CURSEFORGE_TOKEN"]?.let { token ->
 
         apiToken = token
 
-        upload(curseforge_project_id, tasks.jar.get().archiveFile).apply {
+        upload(curseforge_project_id, tasks.remapJar.get().archiveFile).apply {
             changelogType = "html"
             changelog = env["CHANGELOG"]
             releaseType = release_type
@@ -272,7 +284,7 @@ env["MODRINTH_TOKEN"]?.let { modrinthToken ->
         gameVersions.set(listOf(mc_version))
         loaders.set(listOf("fabric"))
         versionType.set(release_type)
-        uploadFile.set(tasks.jar.get())
+        uploadFile.set(tasks.remapJar.get())
         dependencies {
             required.project("Xbc0uyRg")
             required.project("Ha28R6CL")
