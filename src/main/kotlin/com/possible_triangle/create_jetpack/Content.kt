@@ -5,6 +5,10 @@ import com.possible_triangle.create_jetpack.block.JetpackBlock
 import com.possible_triangle.create_jetpack.client.ControlsDisplay
 import com.possible_triangle.create_jetpack.config.Configs
 import com.possible_triangle.create_jetpack.item.BrassJetpack
+import com.possible_triangle.flightlib.api.IFlightApi
+import com.possible_triangle.flightlib.api.IJetpack
+import com.possible_triangle.flightlib.api.ISource
+import com.possible_triangle.flightlib.api.sources.EquipmentSource
 import com.simibubi.create.AllCreativeModeTabs
 import com.simibubi.create.AllTags.AllItemTags
 import com.simibubi.create.content.equipment.armor.BacktankBlockEntity
@@ -23,11 +27,10 @@ import com.simibubi.create.foundation.item.TooltipModifier
 import com.tterrag.registrate.builders.BlockEntityBuilder
 import com.tterrag.registrate.util.entry.ItemEntry
 import com.tterrag.registrate.util.nullness.NonNullFunction
-import net.minecraft.client.Minecraft
+import net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents
 import net.minecraft.client.renderer.RenderType
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider
-import net.minecraft.resources.ResourceLocation
-import net.minecraft.world.item.ItemStack
+import net.minecraft.world.entity.EquipmentSlot
 import net.minecraft.world.level.storage.loot.LootPool
 import net.minecraft.world.level.storage.loot.LootTable
 import net.minecraft.world.level.storage.loot.entries.LootItem
@@ -36,14 +39,8 @@ import net.minecraft.world.level.storage.loot.functions.CopyNbtFunction
 import net.minecraft.world.level.storage.loot.predicates.ExplosionCondition
 import net.minecraft.world.level.storage.loot.providers.nbt.ContextNbtProvider
 import net.minecraft.world.level.storage.loot.providers.number.ConstantValue
-import net.minecraftforge.client.event.EntityRenderersEvent
-import net.minecraftforge.common.capabilities.ICapabilityProvider
-import net.minecraftforge.event.AttachCapabilitiesEvent
-import net.minecraftforge.eventbus.api.IEventBus
+import net.minecraftforge.api.ModLoadingContext
 import net.minecraftforge.fml.config.ModConfig
-import thedarkcolour.kotlinforforge.forge.FORGE_BUS
-import thedarkcolour.kotlinforforge.forge.LOADING_CONTEXT
-import java.util.function.BiConsumer
 import java.util.function.BiFunction
 import java.util.function.Supplier
 
@@ -114,30 +111,28 @@ object Content {
             .tag(AllItemTags.PRESSURIZED_AIR_SOURCES.tag)
             .register()
 
-    private fun attachCapabilities(stack: ItemStack, add: BiConsumer<ResourceLocation, ICapabilityProvider>) {
-        val item = stack.item
-        if (item is BrassJetpack) add.accept(ResourceLocation(MOD_ID, "jetpack"), item)
-    }
+    fun register() {
+        REGISTRATE.register()
 
-    fun register(modBus: IEventBus) {
-        REGISTRATE.registerEventListeners(modBus)
-
-        LOADING_CONTEXT.registerConfig(ModConfig.Type.COMMON, Configs.SERVER_SPEC)
-        LOADING_CONTEXT.registerConfig(ModConfig.Type.CLIENT, Configs.CLIENT_SPEC)
+        ModLoadingContext.registerConfig(MOD_ID, ModConfig.Type.COMMON, Configs.SERVER_SPEC)
+        ModLoadingContext.registerConfig(MOD_ID, ModConfig.Type.CLIENT, Configs.CLIENT_SPEC)
 
         Configs.Network.register()
 
-        modBus.addListener { _: EntityRenderersEvent.AddLayers ->
-            val dispatcher = Minecraft.getInstance().entityRenderDispatcher
-            //JetpackArmorLayer.registerOnAll(dispatcher)
-        }
+        ServerPlayConnectionEvents.JOIN.register { it, _, _ -> Configs.syncConfig(it.player) }
 
-        modBus.addListener(ControlsDisplay::register)
-
-        FORGE_BUS.addListener(Configs::syncConfig)
-        FORGE_BUS.addGenericListener(ItemStack::class.java) { event: AttachCapabilitiesEvent<ItemStack> ->
-            attachCapabilities(event.`object`, event::addCapability)
+        val source = EquipmentSource(EquipmentSlot.CHEST)
+        IFlightApi.INSTANCE.addSource { entity ->
+            listOf(ISource.ProviderEntry(source) {
+                val stack = entity.getItemBySlot(EquipmentSlot.CHEST)
+                val jetpack = stack.item
+                if (jetpack is IJetpack) jetpack else null
+            })
         }
+    }
+
+    fun clientInit() {
+        ControlsDisplay.register()
     }
 
 }

@@ -2,11 +2,8 @@ package com.possible_triangle.create_jetpack.config
 
 import com.possible_triangle.create_jetpack.CreateJetpackMod
 import net.minecraft.network.FriendlyByteBuf
-import net.minecraftforge.network.NetworkDirection
-import net.minecraftforge.network.NetworkEvent.Context
-import java.util.function.Supplier
 
-class SyncConfigMessage (private val config: IServerConfig) {
+class SyncConfigMessage(private val config: IServerConfig) {
 
     companion object {
 
@@ -36,18 +33,9 @@ class SyncConfigMessage (private val config: IServerConfig) {
         buf.writeBoolean(config.elytraBoostEnabled)
     }
 
-    fun handle(context: Supplier<Context>) {
-        with(context.get()) {
-            enqueueWork {
-                if (direction == NetworkDirection.PLAY_TO_CLIENT) {
-                    CreateJetpackMod.LOGGER.debug("Hover speed: ${config.hoverSpeed}")
-                    Configs.SYNCED_SERVER = config
-                } else {
-                    CreateJetpackMod.LOGGER.debug("Received server config of $direction")
-                }
-            }
-            packetHandled = true
-        }
+    fun handle() {
+        CreateJetpackMod.LOGGER.debug("Hover speed: ${config.hoverSpeed}")
+        Configs.SYNCED_SERVER = config
     }
 
 }

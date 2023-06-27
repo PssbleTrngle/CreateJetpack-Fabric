@@ -1,9 +1,6 @@
 package com.possible_triangle.create_jetpack.config
 
-import net.minecraft.resources.ResourceLocation
-import net.minecraft.world.item.enchantment.Enchantment
 import net.minecraftforge.common.ForgeConfigSpec
-import net.minecraftforge.registries.ForgeRegistries
 
 interface IServerConfig {
     val usesPerTank: Int
@@ -14,7 +11,6 @@ interface IServerConfig {
     val hoverSpeed: Double
     val swimModifier: Double
     val elytraBoostEnabled: Boolean
-    fun isAllowed(ench: Enchantment): Boolean
 }
 
 data class SyncedConfig(
@@ -26,9 +22,7 @@ data class SyncedConfig(
     override val hoverSpeed: Double,
     override val swimModifier: Double,
     override val elytraBoostEnabled: Boolean,
-) : IServerConfig {
-    override fun isAllowed(ench: Enchantment) = true
-}
+) : IServerConfig
 
 class ServerConfig(builder: ForgeConfigSpec.Builder) : IServerConfig {
 
@@ -57,11 +51,4 @@ class ServerConfig(builder: ForgeConfigSpec.Builder) : IServerConfig {
     private val elytraBoostEnabledValue = builder.define("features.elytra_boost", true)
     override val elytraBoostEnabled get() = elytraBoostEnabledValue.get()!!
 
-    private val enchantmentsList = builder.defineList("enchantments.list", emptyList<String>()) { true }
-    private val enchantmentsIsBlacklist = builder.define("enchantments.is_blacklist", true)
-    override fun isAllowed(ench: Enchantment): Boolean {
-        val key = ForgeRegistries.ENCHANTMENTS.getKey(ench) ?: return true
-        val contained = enchantmentsList.get().map(::ResourceLocation).any { key == it }
-        return contained != enchantmentsIsBlacklist.get()
-    }
 }

@@ -4,7 +4,6 @@ import java.time.LocalDateTime
 val mod_id: String by extra
 val mappings_channel: String by extra
 val mc_version: String by extra
-//val fabric_version: String by extra
 val registrate_version: String by extra
 val create_version: String by extra
 val flywheel_version: String by extra
@@ -18,9 +17,9 @@ val modrinth_project_id: String by extra
 val curseforge_project_id: String by extra
 val curios_version: String by extra
 val caelus_version: String by extra
-//val elytra_slot_version: String by extra
 val jei_version: String by extra
 val emi_version: String by extra
+val night_config_version: String by extra
 
 val localEnv = file(".env").takeIf { it.exists() }?.readLines()?.associate {
     val (key, value) = it.split("=")
@@ -55,12 +54,6 @@ java {
 }
 
 loom {
-    //accessWidenerPath.set(file("src/main/resources/${mod_id}.accesswidener"))
-
-    mixin {
-        defaultRefmapName.set("${mod_id}.refmap.json")
-    }
-
     runs {
         named("client") {
             client()
@@ -144,6 +137,7 @@ repositories {
         content {
             includeGroup("com.github.LlamaLad7")
             includeGroup("com.github.Chocohead")
+            includeGroup("com.github.llamalad7.mixinextras")
         }
     }
     maven {
@@ -185,6 +179,9 @@ dependencies {
     if (!isCI) {
         modRuntimeOnly("mezz.jei:jei-${mc_version}-fabric:${jei_version}")
         modRuntimeOnly("dev.emi:emi-fabric:${emi_version}")
+
+        //modRuntimeOnly("com.electronwill.night-config:core:${night_config_version}")
+        //modRuntimeOnly("com.electronwill.night-config:toml:${night_config_version}")
     }
 
     modCompileOnly("com.possible_triangle:flightlib-api:${flightlib_version}")
@@ -209,7 +206,6 @@ tasks.withType<Jar> {
                 "Implementation-Version" to mod_version,
                 "Implementation-Vendor" to "examplemodsareus",
                 "Implementation-Timestamp" to LocalDateTime.now().toString(),
-                "MixinConfigs" to "${mod_id}.mixins.json",
             )
         )
     }
@@ -247,7 +243,7 @@ publishing {
     publications {
         create<MavenPublication>("gpr") {
             groupId = artifactGroup
-            artifactId = mod_id
+            artifactId = "${mod_id}-fabric"
             version = mod_version
             from(components["java"])
         }
