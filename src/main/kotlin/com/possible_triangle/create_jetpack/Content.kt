@@ -120,15 +120,6 @@ object Content {
         Configs.Network.register()
 
         ServerPlayConnectionEvents.JOIN.register { it, _, _ -> Configs.syncConfig(it.player) }
-
-        val source = EquipmentSource(EquipmentSlot.CHEST)
-        IFlightApi.INSTANCE.addSource { entity ->
-            listOf(ISource.ProviderEntry(source) {
-                val stack = entity.getItemBySlot(EquipmentSlot.CHEST)
-                val jetpack = stack.item
-                if (jetpack is IJetpack) jetpack else null
-            })
-        }
     }
 
     fun clientInit() {

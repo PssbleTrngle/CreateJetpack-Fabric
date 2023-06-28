@@ -50,7 +50,6 @@ java {
         languageVersion.set(JavaLanguageVersion.of(17))
     }
     withSourcesJar()
-    withJavadocJar()
 }
 
 loom {
@@ -74,10 +73,6 @@ loom {
 sourceSets["main"].resources.srcDir("src/generated/resources/")
 
 repositories {
-    maven {
-        url = uri("file://${env["LOCAL_MAVEN"]}")
-    }
-
     maven {
         url = uri("https://repo.spongepowered.org/repository/maven-public/")
     }
