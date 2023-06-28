@@ -11,7 +11,7 @@
 
 [Looking for the Forge version?](https://github.com/PssbleTrngle/CreateJetpack)
 
-[![Release](https://img.shields.io/github/v/release/PssbleTrngle/CreateJetpack?label=Version&sort=semver)][DOWNLOAD]
+[![Release](https://img.shields.io/github/v/release/PssbleTrngle/CreateJetpack-Fabric?label=Version&sort=semver)][DOWNLOAD]
 [![Downloads](https://cf.way2muchnoise.eu/full_655608_downloads.svg)][CURSEFORGE]
 [![Version](https://cf.way2muchnoise.eu/versions/655608.svg)][DOWNLOAD]
 [![Issues](https://img.shields.io/github/issues/PssbleTrngle/CreateJetpack?label=Issues)][ISSUES]
