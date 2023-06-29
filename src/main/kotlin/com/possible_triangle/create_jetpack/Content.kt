@@ -5,10 +5,6 @@ import com.possible_triangle.create_jetpack.block.JetpackBlock
 import com.possible_triangle.create_jetpack.client.ControlsDisplay
 import com.possible_triangle.create_jetpack.config.Configs
 import com.possible_triangle.create_jetpack.item.BrassJetpack
-import com.possible_triangle.flightlib.api.IFlightApi
-import com.possible_triangle.flightlib.api.IJetpack
-import com.possible_triangle.flightlib.api.ISource
-import com.possible_triangle.flightlib.api.sources.EquipmentSource
 import com.simibubi.create.AllCreativeModeTabs
 import com.simibubi.create.AllTags.AllItemTags
 import com.simibubi.create.content.equipment.armor.BacktankBlockEntity
@@ -30,7 +26,6 @@ import com.tterrag.registrate.util.nullness.NonNullFunction
 import net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents
 import net.minecraft.client.renderer.RenderType
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider
-import net.minecraft.world.entity.EquipmentSlot
 import net.minecraft.world.level.storage.loot.LootPool
 import net.minecraft.world.level.storage.loot.LootTable
 import net.minecraft.world.level.storage.loot.entries.LootItem
@@ -117,13 +112,13 @@ object Content {
         ModLoadingContext.registerConfig(MOD_ID, ModConfig.Type.COMMON, Configs.SERVER_SPEC)
         ModLoadingContext.registerConfig(MOD_ID, ModConfig.Type.CLIENT, Configs.CLIENT_SPEC)
 
-        Configs.Network.register()
-
         ServerPlayConnectionEvents.JOIN.register { it, _, _ -> Configs.syncConfig(it.player) }
     }
 
     fun clientInit() {
         ControlsDisplay.register()
+
+        Configs.Network.registerReceiver()
     }
 
 }

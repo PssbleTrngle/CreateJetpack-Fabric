@@ -53,7 +53,7 @@ object Configs {
             ServerPlayNetworking.send(player, PACKET_ID, buffer)
         }
 
-        fun register() {
+        fun registerReceiver() {
             ClientPlayNetworking.registerGlobalReceiver(PACKET_ID) { client, _, buffer, _ ->
                 val event = SyncConfigMessage.decode(buffer)
                 client.execute {
