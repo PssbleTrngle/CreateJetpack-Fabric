@@ -42,3 +42,27 @@ When underwater while sprint-swimming, the jetpack boosts your swimming speed.
 Additionally, the hover-mode prevents you from floating downwards.
 
 ![Underwater Usage](https://raw.githubusercontent.com/PssbleTrngle/CreateJetpack/1.19.x/screenshots/underwater.png)
+
+Trinkets Support is possible by adding it via a datapack. Save to following to `data/trinkets/tags/items/chest/back.json`:
+
+```json
+{
+  "replace": false,
+  "values": [
+    "create_jetpack:jetpack"
+  ]
+}
+```
+
+If the back slot is not already enabled by another mod, save the following to `data/trinkets/entities/flightlib.json`:
+
+```json
+{
+  "entities": [
+    "player"
+  ],
+  "slots": [
+    "chest/back"
+  ]
+}
+```
