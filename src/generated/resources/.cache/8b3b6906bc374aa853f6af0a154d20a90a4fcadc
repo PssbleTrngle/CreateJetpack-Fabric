@@ -1,0 +1,9 @@
+// 1.19.2	2023-07-17T19:05:48.0357538	Registrate Provider for create_jetpack [Recipes, Advancements, Loot tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), Blockstates, Item models, Lang (en_us/en_ud)]
+99c74b76c8cdc441d609b2209d8223879b4dd684 assets\create_jetpack\models\item\jetpack.json
+242057465f541b30848281de53211183f8009de4 assets\create_jetpack\lang\en_ud.json
+cadbee1695bd0c25e4ddbe0a655ac4648385d095 assets\create_jetpack\blockstates\jetpack.json
+6c53b1a6ed28929b7a0a090edf6101e610f842fc assets\create_jetpack\models\item\jetpack_placeable.json
+944162d5bb5a004902a07d2f149e6d2d5de91340 data\create_jetpack\loot_tables\blocks\jetpack.json
+71008b8a719a648a64c69966c23a65c1fe2643ec assets\create_jetpack\lang\en_us.json
+a4e0d7c60ae58e017ae032a45fbd03c49e6880e1 data\minecraft\tags\blocks\mineable\pickaxe.json
+a4e0d7c60ae58e017ae032a45fbd03c49e6880e1 data\create\tags\items\pressurized_air_sources.json

@@ -23,6 +23,7 @@ import com.simibubi.create.foundation.item.TooltipModifier
 import com.tterrag.registrate.builders.BlockEntityBuilder
 import com.tterrag.registrate.util.entry.ItemEntry
 import com.tterrag.registrate.util.nullness.NonNullFunction
+import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator
 import net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents
 import net.minecraft.client.renderer.RenderType
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider
@@ -35,6 +36,7 @@ import net.minecraft.world.level.storage.loot.predicates.ExplosionCondition
 import net.minecraft.world.level.storage.loot.providers.nbt.ContextNbtProvider
 import net.minecraft.world.level.storage.loot.providers.number.ConstantValue
 import net.minecraftforge.api.ModLoadingContext
+import net.minecraftforge.common.data.ExistingFileHelper
 import net.minecraftforge.fml.config.ModConfig
 import java.util.function.BiFunction
 import java.util.function.Supplier
@@ -119,6 +121,11 @@ object Content {
         ControlsDisplay.register()
 
         Configs.Network.registerReceiver()
+    }
+
+    fun setupDatagen(generator: FabricDataGenerator) {
+        val helper = ExistingFileHelper.withResourcesFromArg()
+        REGISTRATE.setupDatagen(generator, helper)
     }
 
 }

@@ -6,6 +6,7 @@ import com.possible_triangle.flightlib.api.IJetpack
 import com.possible_triangle.flightlib.api.IJetpack.Context
 import com.possible_triangle.flightlib.api.sources.CuriosSource
 import com.possible_triangle.flightlib.api.sources.EquipmentSource
+import com.possible_triangle.flightlib.api.sources.TrinketsSource
 import com.simibubi.create.Create
 import com.simibubi.create.content.equipment.armor.AllArmorMaterials
 import com.simibubi.create.content.equipment.armor.BacktankItem
@@ -76,7 +77,7 @@ class BrassJetpack(properties: Properties, blockItem: ItemEntry<BacktankBlockIte
     override fun isValid(context: Context): Boolean {
         return when (val source = context.source) {
             is EquipmentSource -> source.slot == EquipmentSlot.CHEST
-            is CuriosSource -> source.slot == "back"
+            is TrinketsSource -> true
             else -> false
         }
     }

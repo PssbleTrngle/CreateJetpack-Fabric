@@ -19,6 +19,9 @@
     ],
     "client": [
       "com.possible_triangle.create_jetpack.CreateJetpackMod"
+    ],
+    "fabric-datagen": [
+      "com.possible_triangle.create_jetpack.CreateJetpackMod"
     ]
   },
   "depends": {
