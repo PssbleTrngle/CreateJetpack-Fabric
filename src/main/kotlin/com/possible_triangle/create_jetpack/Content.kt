@@ -5,7 +5,6 @@ import com.possible_triangle.create_jetpack.block.JetpackBlock
 import com.possible_triangle.create_jetpack.client.ControlsDisplay
 import com.possible_triangle.create_jetpack.config.Configs
 import com.possible_triangle.create_jetpack.item.BrassJetpack
-import com.simibubi.create.AllCreativeModeTabs
 import com.simibubi.create.AllTags.AllItemTags
 import com.simibubi.create.content.equipment.armor.BacktankBlockEntity
 import com.simibubi.create.content.equipment.armor.BacktankInstance
@@ -23,6 +22,8 @@ import com.simibubi.create.foundation.item.TooltipModifier
 import com.tterrag.registrate.builders.BlockEntityBuilder
 import com.tterrag.registrate.util.entry.ItemEntry
 import com.tterrag.registrate.util.nullness.NonNullFunction
+import fuzs.forgeconfigapiport.api.config.v2.ForgeConfigRegistry
+import io.github.fabricators_of_create.porting_lib.data.ExistingFileHelper
 import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator
 import net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents
 import net.minecraft.client.renderer.RenderType
@@ -35,8 +36,6 @@ import net.minecraft.world.level.storage.loot.functions.CopyNbtFunction
 import net.minecraft.world.level.storage.loot.predicates.ExplosionCondition
 import net.minecraft.world.level.storage.loot.providers.nbt.ContextNbtProvider
 import net.minecraft.world.level.storage.loot.providers.number.ConstantValue
-import net.minecraftforge.api.ModLoadingContext
-import net.minecraftforge.common.data.ExistingFileHelper
 import net.minecraftforge.fml.config.ModConfig
 import java.util.function.BiFunction
 import java.util.function.Supplier
@@ -44,7 +43,6 @@ import java.util.function.Supplier
 object Content {
 
     private val REGISTRATE = CreateRegistrate.create(MOD_ID)
-        .creativeModeTab { AllCreativeModeTabs.BASE_CREATIVE_TAB }
         .setTooltipModifierFactory {
             ItemDescription.Modifier(it, TooltipHelper.Palette.STANDARD_CREATE)
                 .andThen(TooltipModifier.mapNull(KineticStats.create(it)))
@@ -111,8 +109,8 @@ object Content {
     fun register() {
         REGISTRATE.register()
 
-        ModLoadingContext.registerConfig(MOD_ID, ModConfig.Type.COMMON, Configs.SERVER_SPEC)
-        ModLoadingContext.registerConfig(MOD_ID, ModConfig.Type.CLIENT, Configs.CLIENT_SPEC)
+        ForgeConfigRegistry.INSTANCE.register(MOD_ID, ModConfig.Type.COMMON, Configs.SERVER_SPEC)
+        ForgeConfigRegistry.INSTANCE.register(MOD_ID, ModConfig.Type.CLIENT, Configs.CLIENT_SPEC)
 
         ServerPlayConnectionEvents.JOIN.register { it, _, _ -> Configs.syncConfig(it.player) }
     }
@@ -125,7 +123,7 @@ object Content {
 
     fun setupDatagen(generator: FabricDataGenerator) {
         val helper = ExistingFileHelper.withResourcesFromArg()
-        REGISTRATE.setupDatagen(generator, helper)
+        REGISTRATE.setupDatagen(generator.createPack(), helper)
     }
 
 }
