@@ -4,7 +4,6 @@ import com.possible_triangle.create_jetpack.config.Configs
 import com.possible_triangle.flightlib.api.ControlType
 import com.possible_triangle.flightlib.api.IJetpack
 import com.possible_triangle.flightlib.api.IJetpack.Context
-import com.possible_triangle.flightlib.api.sources.CuriosSource
 import com.possible_triangle.flightlib.api.sources.EquipmentSource
 import com.possible_triangle.flightlib.api.sources.TrinketsSource
 import com.simibubi.create.Create
@@ -83,7 +82,7 @@ class BrassJetpack(properties: Properties, blockItem: ItemEntry<BacktankBlockIte
     }
 
     override fun isUsable(context: Context): Boolean {
-        val tank = BacktankUtil.get(context.entity)
+        val tank = BacktankUtil.getAllWithAir(context.entity).firstOrNull() ?: return false
         if (tank.isEmpty) return false
         val air = BacktankUtil.getAir(tank)
         if (air <= 0F) return false
