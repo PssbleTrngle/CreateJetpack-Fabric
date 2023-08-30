@@ -10,9 +10,11 @@ val caelus_version: String by extra
 val jei_version: String by extra
 val emi_version: String by extra
 val night_config_version: String by extra
+val trinkets_version: String by extra
+val cca_version: String by extra
 
 plugins {
-    id("com.possible-triangle.gradle") version("0.1.0")
+    id("com.possible-triangle.gradle") version ("0.1.0")
 }
 
 withKotlin()
@@ -49,10 +51,22 @@ repositories {
             includeGroup("com.possible_triangle")
         }
     }
+
+    maven {
+        url = uri("https://maven.ladysnake.org/releases")
+        content {
+            includeGroup("dev.onyxstudios.cardinal-components-api")
+        }
+    }
 }
 
 dependencies {
     modApi("com.simibubi.create:create-fabric-${mc_version}:${create_version}")
+    modApi("dev.emi:trinkets:${trinkets_version}")
+
+    // Should be included with trinkets but is not available at runtime somehow
+    modCompileOnly("dev.onyxstudios.cardinal-components-api:cardinal-components-base:${cca_version}")
+    modCompileOnly("dev.onyxstudios.cardinal-components-api:cardinal-components-entity:${cca_version}")
 
     if (!env.isCI) {
         modRuntimeOnly("mezz.jei:jei-${mc_version}-fabric:${jei_version}")
