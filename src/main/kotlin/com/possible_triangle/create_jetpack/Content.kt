@@ -5,6 +5,7 @@ import com.possible_triangle.create_jetpack.block.JetpackBlock
 import com.possible_triangle.create_jetpack.client.ControlsDisplay
 import com.possible_triangle.create_jetpack.config.Configs
 import com.possible_triangle.create_jetpack.item.BrassJetpack
+import com.simibubi.create.AllCreativeModeTabs
 import com.simibubi.create.AllTags.AllItemTags
 import com.simibubi.create.content.equipment.armor.BacktankBlockEntity
 import com.simibubi.create.content.equipment.armor.BacktankInstance
@@ -104,6 +105,7 @@ object Content {
         REGISTRATE.item<BrassJetpack>("jetpack") { BrassJetpack(it, JETPACK_PLACEABLE) }
             .model(AssetLookup.customGenericItemModel("_", "item"))
             .tag(AllItemTags.PRESSURIZED_AIR_SOURCES.tag)
+            .transform { it.tab(AllCreativeModeTabs.MAIN_TAB.key) { mod -> mod.accept(it.entry.createCreateTabEntry()) } }
             .register()
 
     fun register() {

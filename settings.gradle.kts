@@ -8,4 +8,4 @@ pluginManagement {
     }
 }
 
-rootProject.name = "$mod_name (Fabric)"
+rootProject.name = "$mod_name Fabric"

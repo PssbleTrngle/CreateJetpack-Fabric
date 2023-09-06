@@ -14,6 +14,7 @@ import com.simibubi.create.foundation.particle.AirParticleData
 import com.tterrag.registrate.util.entry.ItemEntry
 import net.minecraft.core.particles.ParticleOptions
 import net.minecraft.world.entity.EquipmentSlot
+import net.minecraft.world.item.ItemStack
 import net.minecraft.world.item.Rarity
 import net.minecraft.world.phys.Vec3
 
@@ -92,5 +93,11 @@ class BrassJetpack(properties: Properties, blockItem: ItemEntry<BacktankBlockIte
 
     override fun createParticles(): ParticleOptions {
         return AirParticleData(0F, 0.01F)
+    }
+
+    fun createCreateTabEntry(): ItemStack {
+        return ItemStack(this).apply {
+            orCreateTag.putFloat("Air", BacktankUtil.maxAir(this).toFloat())
+        }
     }
 }
