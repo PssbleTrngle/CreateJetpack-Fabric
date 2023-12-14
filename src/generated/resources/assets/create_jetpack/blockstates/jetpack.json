@@ -1,33 +1,33 @@
 {
   "variants": {
     "facing=east,waterlogged=false": {
-      "model": "create_jetpack:block/jetpack/block",
+      "model": "create_jetpack:block/jetpack",
       "y": 90
     },
     "facing=east,waterlogged=true": {
-      "model": "create_jetpack:block/jetpack/block",
+      "model": "create_jetpack:block/jetpack",
       "y": 90
     },
     "facing=north,waterlogged=false": {
-      "model": "create_jetpack:block/jetpack/block"
+      "model": "create_jetpack:block/jetpack"
     },
     "facing=north,waterlogged=true": {
-      "model": "create_jetpack:block/jetpack/block"
+      "model": "create_jetpack:block/jetpack"
     },
     "facing=south,waterlogged=false": {
-      "model": "create_jetpack:block/jetpack/block",
+      "model": "create_jetpack:block/jetpack",
       "y": 180
     },
     "facing=south,waterlogged=true": {
-      "model": "create_jetpack:block/jetpack/block",
+      "model": "create_jetpack:block/jetpack",
       "y": 180
     },
     "facing=west,waterlogged=false": {
-      "model": "create_jetpack:block/jetpack/block",
+      "model": "create_jetpack:block/jetpack",
       "y": 270
     },
     "facing=west,waterlogged=true": {
-      "model": "create_jetpack:block/jetpack/block",
+      "model": "create_jetpack:block/jetpack",
       "y": 270
     }
   }

@@ -7,24 +7,25 @@ import net.minecraft.core.BlockPos
 import net.minecraft.nbt.ListTag
 import net.minecraft.world.item.ItemStack
 import net.minecraft.world.level.BlockGetter
+import net.minecraft.world.level.ItemLike
 import net.minecraft.world.level.block.entity.BlockEntityType
 import net.minecraft.world.level.block.state.BlockState
 
-class JetpackBlock(properties: Properties) : BacktankBlock(properties) {
+class JetpackBlock(private val item: ItemLike, properties: Properties) : BacktankBlock(properties) {
 
     override fun getCloneItemStack(
         world: BlockGetter,
         pos: BlockPos,
         state: BlockState
     ): ItemStack {
-        val item = ItemStack(Content.JETPACK.get())
+        val item = ItemStack(item)
         val tile = getBlockEntityOptional(world, pos)
 
         val air = tile.map { it.getAirLevel() }.orElse(0) as Int
         item.orCreateTag.putInt("Air", air)
 
         val enchants = tile.map { it.enchantmentTag }.orElse(ListTag())
-        if (!enchants.isEmpty()) {
+        if (enchants.isNotEmpty()) {
             val enchantmentTagList = item.enchantmentTags
             enchantmentTagList.addAll(enchants)
             item.orCreateTag.put("Enchantments", enchantmentTagList)
@@ -36,7 +37,7 @@ class JetpackBlock(properties: Properties) : BacktankBlock(properties) {
     }
 
     override fun getBlockEntityType(): BlockEntityType<out BacktankBlockEntity> {
-        return Content.JETPACK_TILE.get()
+        return Content.JETPACK_BLOCK_ENTITY.get()
     }
 
 }

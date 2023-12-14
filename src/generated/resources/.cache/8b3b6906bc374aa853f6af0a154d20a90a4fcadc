@@ -1,9 +1,15 @@
-// 1.19.2	2023-07-17T19:05:48.0357538	Registrate Provider for create_jetpack [Recipes, Advancements, Loot tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), Blockstates, Item models, Lang (en_us/en_ud)]
-99c74b76c8cdc441d609b2209d8223879b4dd684 assets\create_jetpack\models\item\jetpack.json
-242057465f541b30848281de53211183f8009de4 assets\create_jetpack\lang\en_ud.json
-cadbee1695bd0c25e4ddbe0a655ac4648385d095 assets\create_jetpack\blockstates\jetpack.json
-6c53b1a6ed28929b7a0a090edf6101e610f842fc assets\create_jetpack\models\item\jetpack_placeable.json
+// 1.19.2	2023-12-14T23:26:35.6438771	Registrate Provider for create_jetpack [Recipes, Advancements, Loot tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), Blockstates, Item models, Lang (en_us/en_ud)]
+0ce5da71b5721fc16e0368dd0e1214de5a56fab3 assets\create_jetpack\models\item\jetpack.json
+a9f4853187ae09ad01356339f4acf9b3e8189ebd assets\create_jetpack\models\block\netherite_jetpack.json
+673a48952547e61209ce76274272e9c4e05c8189 assets\create_jetpack\blockstates\jetpack.json
 944162d5bb5a004902a07d2f149e6d2d5de91340 data\create_jetpack\loot_tables\blocks\jetpack.json
-71008b8a719a648a64c69966c23a65c1fe2643ec assets\create_jetpack\lang\en_us.json
-a4e0d7c60ae58e017ae032a45fbd03c49e6880e1 data\minecraft\tags\blocks\mineable\pickaxe.json
-a4e0d7c60ae58e017ae032a45fbd03c49e6880e1 data\create\tags\items\pressurized_air_sources.json
+dadd4d1712072a63e01431df3d1c87467e33bf7c data\create_jetpack\loot_tables\blocks\netherite_jetpack.json
+ba646e7fbcf74f90e9695a777bbcd88b4460e74a data\minecraft\tags\blocks\mineable\pickaxe.json
+8fc46b31bb026ff32b7fd81282d80fe74294d823 assets\create_jetpack\lang\en_ud.json
+f01edd57ce03744767e9ab7b7e68c80d9834a50c assets\create_jetpack\models\item\netherite_jetpack.json
+6c53b1a6ed28929b7a0a090edf6101e610f842fc assets\create_jetpack\models\item\jetpack_placeable.json
+48f8d6961c693a1d279b084961196134511d7874 assets\create_jetpack\lang\en_us.json
+bd5c42a96cb08087f0d25032556133e56a265410 assets\create_jetpack\models\block\jetpack.json
+ba8e314e1e6dbb6c25dd5e837cef04f8d96412a1 assets\create_jetpack\blockstates\netherite_jetpack.json
+6c53b1a6ed28929b7a0a090edf6101e610f842fc assets\create_jetpack\models\item\netherite_jetpack_placeable.json
+ba646e7fbcf74f90e9695a777bbcd88b4460e74a data\create\tags\items\pressurized_air_sources.json
