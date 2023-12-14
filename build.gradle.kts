@@ -14,14 +14,14 @@ val trinkets_version: String by extra
 val cca_version: String by extra
 
 plugins {
-    id("com.possible-triangle.gradle") version ("0.1.0")
+    id("com.possible-triangle.gradle") version ("0.1.4")
 }
 
 withKotlin()
 
 fabric {
     dataGen()
-    includesMod("com.possible_triangle:flightlib-fabric:${flightlib_version}")
+    includesMod("com.possible-triangle:flightlib-fabric:${flightlib_version}")
 }
 
 base {
@@ -33,6 +33,7 @@ repositories {
 
     curseMaven()
     modrinthMaven()
+    localMaven(project)
 
     maven {
         url = uri("https://maven.blamejared.com/")
@@ -48,7 +49,7 @@ repositories {
             password = env["GITHUB_TOKEN"]
         }
         content {
-            includeGroup("com.possible_triangle")
+            includeGroup("com.possible-triangle")
         }
     }
 
@@ -76,13 +77,11 @@ dependencies {
         //modRuntimeOnly("com.electronwill.night-config:toml:${night_config_version}")
     }
 
-    modCompileOnly("com.possible_triangle:flightlib-api:${flightlib_version}")
+    modCompileOnly("com.possible-triangle:flightlib-api:${flightlib_version}")
 }
 
 enablePublishing {
-    repositories {
-        githubPackages(project)
-    }
+    githubPackages()
 }
 
 uploadToCurseforge {

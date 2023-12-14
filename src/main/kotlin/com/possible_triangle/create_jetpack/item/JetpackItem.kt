@@ -4,25 +4,33 @@ import com.possible_triangle.create_jetpack.config.Configs
 import com.possible_triangle.flightlib.api.ControlType
 import com.possible_triangle.flightlib.api.IJetpack
 import com.possible_triangle.flightlib.api.IJetpack.Context
+import com.possible_triangle.flightlib.api.sources.CuriosSource
 import com.possible_triangle.flightlib.api.sources.EquipmentSource
-import com.possible_triangle.flightlib.api.sources.TrinketsSource
-import com.simibubi.create.Create
-import com.simibubi.create.content.equipment.armor.AllArmorMaterials
 import com.simibubi.create.content.equipment.armor.BacktankItem
 import com.simibubi.create.content.equipment.armor.BacktankUtil
+import com.simibubi.create.foundation.item.LayeredArmorItem
 import com.simibubi.create.foundation.particle.AirParticleData
 import com.tterrag.registrate.util.entry.ItemEntry
 import net.minecraft.core.particles.ParticleOptions
+import net.minecraft.core.particles.ParticleTypes
+import net.minecraft.resources.ResourceLocation
 import net.minecraft.world.entity.EquipmentSlot
 import net.minecraft.world.item.ItemStack
-import net.minecraft.world.item.Rarity
+import net.minecraft.world.entity.LivingEntity
+import net.minecraft.world.item.ArmorMaterial
 import net.minecraft.world.phys.Vec3
+import java.util.*
 
-class BrassJetpack(properties: Properties, blockItem: ItemEntry<BacktankBlockItem>) :
+open class JetpackItem(
+    properties: Properties,
+    material: ArmorMaterial,
+    texture: ResourceLocation,
+    blockItem: ItemEntry<BacktankBlockItem>,
+) :
     BacktankItem(
-        AllArmorMaterials.COPPER,
-        properties.rarity(Rarity.RARE),
-        Create.asResource("copper_diving"),
+        material,
+        properties,
+        texture,
         blockItem
     ), IJetpack {
 
@@ -65,7 +73,6 @@ class BrassJetpack(properties: Properties, blockItem: ItemEntry<BacktankBlockIte
     override fun getThrusters(context: Context) = thrusters
 
     override fun onUse(context: Context) {
-        if (!isThrusting(context)) return
         BacktankUtil.canAbsorbDamage(context.entity, usesPerTank(context))
     }
 
@@ -77,27 +84,42 @@ class BrassJetpack(properties: Properties, blockItem: ItemEntry<BacktankBlockIte
     override fun isValid(context: Context): Boolean {
         return when (val source = context.source) {
             is EquipmentSource -> source.slot == EquipmentSlot.CHEST
-            is TrinketsSource -> true
+            is CuriosSource -> true
             else -> false
         }
     }
 
     override fun isUsable(context: Context): Boolean {
         val tank = BacktankUtil.getAllWithAir(context.entity).firstOrNull() ?: return false
-        if (tank.isEmpty) return false
         val air = BacktankUtil.getAir(tank)
-        if (air <= 0F) return false
         val cost = BacktankUtil.maxAirWithoutEnchants().toFloat() / usesPerTank(context)
         return air >= cost
     }
 
     override fun createParticles(): ParticleOptions {
-        return AirParticleData(0F, 0.01F)
+        return if (Configs.CLIENT.spawnSnowParticles)
+            ParticleTypes.SNOWFLAKE
+        else
+            AirParticleData(0F, 0.01F)
     }
 
-    fun createCreateTabEntry(): ItemStack {
-        return ItemStack(this).apply {
-            orCreateTag.putFloat("Air", BacktankUtil.maxAir(this).toFloat())
+    class Layered(
+        properties: Properties,
+        material: ArmorMaterial,
+        texture: ResourceLocation,
+        blockItem: ItemEntry<BacktankBlockItem>
+    ) : JetpackItem(properties, material, texture, blockItem), LayeredArmorItem {
+
+        override fun getArmorTextureLocation(
+            entity: LivingEntity?,
+            slot: EquipmentSlot?,
+            stack: ItemStack?,
+            layer: Int,
+        ): String {
+            return String.format(
+                Locale.ROOT, "%s:textures/models/armor/%s_layer_%d.png",
+                textureLoc.namespace, textureLoc.path, layer
+            )
         }
     }
 }
