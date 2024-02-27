@@ -8,6 +8,7 @@ import net.minecraft.world.item.ItemStack;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
+import org.spongepowered.asm.mixin.injection.Slice;
 
 @Mixin(NetheriteDivingHandler.class)
 public class NetheriteDivingHandlerMixin {
@@ -17,6 +18,13 @@ public class NetheriteDivingHandlerMixin {
             at = @At(
                     value = "INVOKE",
                     target = "Lcom/tterrag/registrate/util/entry/ItemEntry;isIn(Lnet/minecraft/world/item/ItemStack;)Z"
+            ),
+            slice = @Slice(
+                    from = @At(
+                            value = "FIELD",
+                            target = "Lnet/minecraft/world/entity/EquipmentSlot;CHEST:Lnet/minecraft/world/entity/EquipmentSlot;"
+                    ),
+                    to = @At("TAIL")
             )
     )
     private static boolean modifyNetheritePredicate(ItemEntry instance, ItemStack stack) {
