@@ -4,8 +4,8 @@ import com.possible_triangle.create_jetpack.config.Configs
 import com.possible_triangle.flightlib.api.ControlType
 import com.possible_triangle.flightlib.api.IJetpack
 import com.possible_triangle.flightlib.api.IJetpack.Context
-import com.possible_triangle.flightlib.api.sources.CuriosSource
 import com.possible_triangle.flightlib.api.sources.EquipmentSource
+import com.possible_triangle.flightlib.api.sources.TrinketsSource
 import com.simibubi.create.content.equipment.armor.BacktankItem
 import com.simibubi.create.content.equipment.armor.BacktankUtil
 import com.simibubi.create.foundation.item.LayeredArmorItem
@@ -62,8 +62,8 @@ open class JetpackItem(
         return Configs.SERVER.swimModifier
     }
 
-    override fun boostsElytra(): Boolean {
-        return Configs.SERVER.elytraBoostEnabled
+    override fun elytraBoost(): Double {
+        return Configs.SERVER.elytraBoost
     }
 
     private val thrusters = listOf(-0.35, 0.35).map { offset ->
@@ -84,7 +84,7 @@ open class JetpackItem(
     override fun isValid(context: Context): Boolean {
         return when (val source = context.source) {
             is EquipmentSource -> source.slot == EquipmentSlot.CHEST
-            is CuriosSource -> true
+            is TrinketsSource -> true
             else -> false
         }
     }

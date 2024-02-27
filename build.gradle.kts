@@ -21,6 +21,7 @@ withKotlin()
 
 fabric {
     dataGen()
+    enableMixins()
     includesMod("com.possible-triangle:flightlib-fabric:${flightlib_version}")
 }
 
