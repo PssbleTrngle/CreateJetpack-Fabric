@@ -14,6 +14,8 @@ val trinkets_version: String by extra
 val cca_version: String by extra
 
 plugins {
+    // force newer loom version (version that comes with com.possible-triangle.gradle is too old)
+    id("fabric-loom") version "1.5.+" apply false
     id("com.possible-triangle.gradle") version ("0.1.4")
 }
 
@@ -60,6 +62,8 @@ repositories {
             includeGroup("dev.onyxstudios.cardinal-components-api")
         }
     }
+
+    maven("https://mvn.devos.one/releases/")
 }
 
 dependencies {
