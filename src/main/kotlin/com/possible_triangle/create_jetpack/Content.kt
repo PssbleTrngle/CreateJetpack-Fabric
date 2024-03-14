@@ -165,7 +165,7 @@ object Content {
         }
         tag(AllItemTags.PRESSURIZED_AIR_SOURCES.tag)
         transform {
-            it.tab(AllCreativeModeTabs.MAIN_TAB.key) { mod ->
+            it.tab(AllCreativeModeTabs.BASE_CREATIVE_TAB.key) { mod ->
                 mod.accept(ItemStack(it.entry).apply {
                     orCreateTag.putFloat("Air", BacktankUtil.maxAir(this).toFloat())
                 })
