@@ -24,15 +24,12 @@
       "com.possible_triangle.create_jetpack.CreateJetpackMod"
     ]
   },
-  "mixins": [
-    "${mod_id}.mixins.json"
-  ],
   "depends": {
     "fabricloader": ">=0.14",
     "fabric": "*",
     "minecraft": "1.20.1",
     "java": ">=17",
-    "flightlib": ">=2.0.0",
-    "create": ">=0.5.1-d"
+    "flightlib": "*",
+    "create": ">=0.5.1-f"
   }
 }

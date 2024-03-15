@@ -14,14 +14,13 @@ val trinkets_version: String by extra
 val cca_version: String by extra
 
 plugins {
-    id("com.possible-triangle.gradle") version ("0.1.4")
+    id("com.possible-triangle.gradle") version ("0.1.5")
 }
 
 withKotlin()
 
 fabric {
     dataGen()
-    enableMixins()
     includesMod("com.possible-triangle:flightlib-fabric:${flightlib_version}")
 }
 
@@ -30,7 +29,7 @@ base {
 }
 
 repositories {
-    apply(from = "https://raw.githubusercontent.com/PssbleTrngle/GradleHelper/main/repositories/create-fabric.build.kts")
+    apply(from = "https://raw.githubusercontent.com/PssbleTrngle/GradleHelper/4211a23d270fb542408dd363748fd52740953a82/repositories/create-fabric.build.kts")
 
     curseMaven()
     modrinthMaven()
