@@ -29,7 +29,7 @@ base {
 }
 
 repositories {
-    apply(from = "https://raw.githubusercontent.com/PssbleTrngle/GradleHelper/4211a23d270fb542408dd363748fd52740953a82/repositories/create-fabric.build.kts")
+    apply(from = "https://raw.githubusercontent.com/PssbleTrngle/GradleHelper/main/repositories/create-fabric.build.kts")
 
     curseMaven()
     modrinthMaven()
