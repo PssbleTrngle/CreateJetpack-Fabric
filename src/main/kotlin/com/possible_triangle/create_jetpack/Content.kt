@@ -33,6 +33,9 @@ import net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents
 import net.minecraft.client.renderer.RenderType
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider
 import net.minecraft.core.Registry
+import net.minecraft.core.registries.Registries
+import net.minecraft.resources.ResourceLocation
+import net.minecraft.tags.TagKey
 import net.minecraft.world.item.ArmorMaterials
 import net.minecraft.world.item.Item
 import net.minecraft.world.item.Rarity
@@ -59,6 +62,8 @@ object Content {
             ItemDescription.Modifier(it, TooltipHelper.Palette.STANDARD_CREATE)
                 .andThen(TooltipModifier.mapNull(KineticStats.create(it)))
         }
+
+    private val CHESTPLATES = TagKey.create(Registries.ITEM, ResourceLocation("c", "chestplates"))
 
     val COPY_NBT_MECHANICAL_CRAFTING_SERIALIZER = REGISTRATE
         .simple(
@@ -141,6 +146,8 @@ object Content {
                 .texture("0", "block/${c.name}")
         }
         tag(AllItemTags.PRESSURIZED_AIR_SOURCES.tag)
+        properties { it.durability(-1) } // fabric: Item#canBeDepleted() isn't enough to disable durability, so we need to set its maxDamage to -1 as well
+        tag(CHESTPLATES)
 
         owner.addRawLang("item.${REGISTRATE.modid}.${name}.tooltip", "")
         owner.addRawLang("item.${REGISTRATE.modid}.${name}.tooltip.summary", "Allows levitation using pressurized air")
