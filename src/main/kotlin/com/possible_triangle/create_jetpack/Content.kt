@@ -33,7 +33,6 @@ import net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents
 import net.minecraft.client.renderer.RenderType
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider
 import net.minecraft.core.Registry
-import net.minecraft.core.registries.Registries
 import net.minecraft.resources.ResourceLocation
 import net.minecraft.tags.TagKey
 import net.minecraft.world.item.ArmorMaterials
@@ -63,7 +62,7 @@ object Content {
                 .andThen(TooltipModifier.mapNull(KineticStats.create(it)))
         }
 
-    private val CHESTPLATES = TagKey.create(Registries.ITEM, ResourceLocation("c", "chestplates"))
+    private val CHESTPLATES = TagKey.create(Registry.ITEM_REGISTRY, ResourceLocation("c", "chestplates"))
 
     val COPY_NBT_MECHANICAL_CRAFTING_SERIALIZER = REGISTRATE
         .simple(
