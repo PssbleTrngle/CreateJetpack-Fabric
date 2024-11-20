@@ -1,0 +1,16 @@
+// 1.20.1	2024-11-20T11:24:16.6073099	Create Jetpack/Registrate Provider for create_jetpack [Recipes, Advancements, Loot Tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), Blockstates, Item models, Lang (en_us/en_ud)]
+ba646e7fbcf74f90e9695a777bbcd88b4460e74a data\c\tags\items\chestplates.json
+a9f4853187ae09ad01356339f4acf9b3e8189ebd assets\create_jetpack\models\block\netherite_jetpack.json
+6c53b1a6ed28929b7a0a090edf6101e610f842fc assets\create_jetpack\models\item\netherite_jetpack_placeable.json
+bd5c42a96cb08087f0d25032556133e56a265410 assets\create_jetpack\models\block\jetpack.json
+8fc46b31bb026ff32b7fd81282d80fe74294d823 assets\create_jetpack\lang\en_ud.json
+f8aafebedfbb7eb6ae616ef02ceb65d53836cb34 data\create_jetpack\loot_tables\blocks\netherite_jetpack.json
+ba646e7fbcf74f90e9695a777bbcd88b4460e74a data\minecraft\tags\blocks\mineable\pickaxe.json
+0ce5da71b5721fc16e0368dd0e1214de5a56fab3 assets\create_jetpack\models\item\jetpack.json
+5ed56d93c148c56074a3b6ac38087d3019ef249a data\create_jetpack\loot_tables\blocks\jetpack.json
+ba8e314e1e6dbb6c25dd5e837cef04f8d96412a1 assets\create_jetpack\blockstates\netherite_jetpack.json
+6c53b1a6ed28929b7a0a090edf6101e610f842fc assets\create_jetpack\models\item\jetpack_placeable.json
+ba646e7fbcf74f90e9695a777bbcd88b4460e74a data\create\tags\items\pressurized_air_sources.json
+f01edd57ce03744767e9ab7b7e68c80d9834a50c assets\create_jetpack\models\item\netherite_jetpack.json
+673a48952547e61209ce76274272e9c4e05c8189 assets\create_jetpack\blockstates\jetpack.json
+48f8d6961c693a1d279b084961196134511d7874 assets\create_jetpack\lang\en_us.json
