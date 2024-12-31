@@ -14,7 +14,7 @@ val trinkets_version: String by extra
 val cca_version: String by extra
 
 plugins {
-    id("com.possible-triangle.gradle") version ("0.1.4")
+    id("com.possible-triangle.gradle") version ("0.2.5")
 }
 
 withKotlin()
