@@ -30,6 +30,6 @@
     "minecraft": "1.19.2",
     "java": ">=17",
     "flightlib": "*",
-    "create": ">=0.5.1-f"
+    "create": ">=0.5.1-j"
   }
 }
