@@ -82,7 +82,7 @@ object Content {
         .register()
 
     val JETPACK_BLOCK: BlockEntry<JetpackBlock> = REGISTRATE
-        .block<JetpackBlock>("jetpack") { JetpackBlock({ JETPACK_ITEM.get() }, it) }
+        .block<JetpackBlock>("jetpack") { JetpackBlock(it) }
         .initialProperties { SharedProperties.copperMetal() }
         .jetpackTransforms { JETPACK_ITEM.get() }
         .register()
@@ -100,7 +100,7 @@ object Content {
         .register()
 
     val NETHERITE_JETPACK_BLOCK: BlockEntry<JetpackBlock> = REGISTRATE
-        .block<JetpackBlock>("netherite_jetpack") { JetpackBlock({ NETHERITE_JETPACK_ITEM.get() }, it) }
+        .block<JetpackBlock>("netherite_jetpack") { JetpackBlock(it) }
         .initialProperties { SharedProperties.netheriteMetal() }
         .jetpackTransforms { NETHERITE_JETPACK_ITEM.get() }
         .register()
