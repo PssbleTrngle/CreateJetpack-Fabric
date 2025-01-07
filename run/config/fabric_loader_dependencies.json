@@ -6,6 +6,11 @@
         "com_electronwill_night-config_core": "",
         "com_electronwill_night-config_toml": ""
       }
+    },
+    "create": {
+      "-breaks": {
+        "create_jetpack": ""
+      }
     }
   }
 }
