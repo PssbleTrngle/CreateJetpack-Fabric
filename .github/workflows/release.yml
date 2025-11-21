@@ -1,7 +1,10 @@
 name: Release
 on:
   release:
-    types: [created]
+    types: [published]
+
+env:
+  CI: true
 
 jobs:
   build:
@@ -21,13 +24,6 @@ jobs:
       - name: Validate Gradle wrapper
         uses: gradle/wrapper-validation-action@v1
 
-      - name: Update mod version
-        uses: christian-draeger/write-properties@1.0.1
-        with:
-          path: "gradle.properties"
-          property: "mod_version"
-          value: ${{ github.event.release.tag_name }}
-
       - name: Build and upload
         uses: gradle/gradle-build-action@v2
         with:
@@ -37,7 +33,7 @@ jobs:
           MODRINTH_TOKEN: ${{ secrets.MODRINTH_TOKEN }}
           CURSEFORGE_TOKEN: ${{ secrets.CURSEFORGE_TOKEN }}
           CHANGELOG: ${{ github.event.release.body }}
-          CI: true
+          RELEASE_VERSION: ${{ github.event.release.tag_name }}
 
       - name: Upload to github releases
         if: ${{ github.event_name == 'release' }}
